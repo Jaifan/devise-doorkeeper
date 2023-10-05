@@ -5,6 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+if Doorkeeper::Application.count.zero?
+    Doorkeeper::Application.create!(name: 'Web Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'ios Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'Android Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'React', redirect_uri: '', scopes: '')
+end
+
 User.first_or_create(
     email: 'test1@bfirm.sa',
     password: 'test',
